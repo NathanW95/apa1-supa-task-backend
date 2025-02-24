@@ -24,19 +24,19 @@ serve(async (req: Request) => {
 
     // Handle POST request - add expense
     if (req.method === "POST") {
-      const {id, description, category, amount, date_added} = await req.json();
-      const { error } = await supabase.from("expenses").insert([{id, description, category, amount, date_added}]);
+      const {description, category, amount} = await req.json();
+      const { error } = await supabase.from("expenses").insert([{description, category, amount}]);
 
       if (error) throw error;
       return new Response(JSON.stringify({ success: true}), { headers });
     }
 
-    // Handle PUT request - update expense
+    // Handle PUT request - update expense // CHECK THIS!!
     if (req.method === "PUT") {
-      const { id, description, category, amount, date_added } = await req.json();
+      const { id, description, category, amount} = await req.json();
       const { error } = await supabase
           .from("expenses")
-          .update({ expense })
+          .update({description, category, amount})
           .eq("id", id);
 
       if (error) throw error;
