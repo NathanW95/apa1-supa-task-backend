@@ -11,15 +11,28 @@ serve(async (req: Request) => {
   const headers = { "Content-Type": "application/json" };
 
   try {
-    // Handle GET request - fetch expenses
-    if (req.method === "GET") {
-      const { data, error } = await supabase
-          .from("expenses")
-          .select("*")
-          .order("date_added", { ascending: false });
+    const url = new URL(req.url);
+    const userId = url.searchParams.get("user_id");
 
-      if (error) throw error;
-      return new Response(JSON.stringify(data), { headers });
+    // Handle GET request
+    if (req.method === "GET") {
+      if (userId) {
+        const { data, error } = await supabase
+            .from("expenses")
+            .select("*")
+            .eq("user_id", userId)
+
+        if (error) throw error;
+        return new Response(JSON.stringify(data), { headers });
+      } else {
+        const { data, error } = await supabase
+            .from("expenses")
+            .select("*")
+            .order("date_added", { ascending: false });
+
+        if (error) throw error;
+        return new Response(JSON.stringify(data), { headers });
+      }
     }
 
     // Handle POST request - add expense
@@ -43,7 +56,6 @@ serve(async (req: Request) => {
       return new Response(JSON.stringify({ success: true}), { headers });
     }
 
-
     // Handle DELETE request - delete expense
     if (req.method === "DELETE") {
       const { id } = await req.json();
@@ -62,13 +74,12 @@ serve(async (req: Request) => {
       headers
     });
 
-  } catch (error) {
+  }
+  catch (error) {
     const errorExpense = error instanceof Error ? error.message : "Unknown error";
     return new Response(JSON.stringify({ error: errorExpense }), {
       status: 500,
       headers
     });
   }
-
-
 });
