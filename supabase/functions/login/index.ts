@@ -10,7 +10,6 @@ serve(async (req: Request) => {
   const headers = { "Content-Type": "application/json" };
 
   try {
-    // Handle POST request - Login User / Check credentials
     if (req.method === "POST") {
       const { username, password } = await req.json();
       const { data, error } = await supabase
@@ -23,12 +22,12 @@ serve(async (req: Request) => {
         return new Response(JSON.stringify({ success: false, message: "Invalid username or password" }), { status: 401, headers });
       }
 
-      // Assuming passwords are stored in plain text (not recommended)
+
       if (data.password !== password) {
         return new Response(JSON.stringify({ success: false, message: "Invalid password" }), { status: 401, headers });
       }
 
-      return new Response(JSON.stringify({ success: true, userId: data.userId }), { headers });
+      return new Response(JSON.stringify({ success: true, userId: data.user_id }), { headers });
     }
 
     // Handle unsupported methods
