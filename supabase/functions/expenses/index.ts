@@ -21,6 +21,7 @@ serve(async (req: Request) => {
             .from("expenses")
             .select("*")
             .eq("user_id", userId)
+            .order("date_added", { ascending: false });
 
         if (error) throw error;
         return new Response(JSON.stringify(data), { headers });
