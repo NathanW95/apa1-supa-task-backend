@@ -13,6 +13,9 @@ serve(async (req: Request) => {
   try {
     const url = new URL(req.url);
     const userId = url.searchParams.get("user_id");
+    const sortBy = url.searchParams.get("sort_by") || "date_added";
+    const sortOrder = url.searchParams.get("sort_order") === "asc" ? true : false; // Default to false/descending
+
 
     // Handle GET request
     if (req.method === "GET") {
@@ -21,7 +24,7 @@ serve(async (req: Request) => {
             .from("expenses")
             .select("*")
             .eq("user_id", userId)
-            .order("date_added", { ascending: false });
+            .order(sortBy, { ascending: sortOrder });
 
         if (error) throw error;
         return new Response(JSON.stringify(data), { headers });
@@ -29,7 +32,7 @@ serve(async (req: Request) => {
         const { data, error } = await supabase
             .from("expenses")
             .select("*")
-            .order("date_added", { ascending: false });
+            .order(sortBy, { ascending: sortOrder });
 
         if (error) throw error;
         return new Response(JSON.stringify(data), { headers });
