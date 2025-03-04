@@ -41,8 +41,8 @@ serve(async (req: Request) => {
 
     // Handle POST request - add expense
     if (req.method === "POST") {
-      const {description, category, amount} = await req.json();
-      const { error } = await supabase.from("expenses").insert([{description, category, amount}]);
+      const {description, category, amount, user_id} = await req.json();
+      const { error } = await supabase.from("expenses").insert([{description, category, amount, user_id}]);
 
       if (error) throw error;
       return new Response(JSON.stringify({ success: true}), { headers });
