@@ -17,23 +17,14 @@ serve(async (req: Request) => {
     // Handle GET request
     if (req.method === "GET") {
       if (username) {
-        const { data, error } = await supabase
+        const {error } = await supabase
           .from("users")
           .select("*")
           .eq("username", username)
           .single();
 
         if (error) throw error;
-        return new Response(JSON.stringify(data), { headers });
-      } else {
-        // Fetch all users
-        const { data, error } = await supabase
-          .from("users")
-          .select("*")
-          .order("user_id", { ascending: true });
-
-        if (error) throw error;
-        return new Response(JSON.stringify(data), { headers });
+        return new Response(JSON.stringify({ success: true }), { headers });
       }
     }
 
