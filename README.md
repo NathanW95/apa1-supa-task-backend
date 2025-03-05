@@ -22,19 +22,15 @@ This repository contains the backend API for the APA1 Supa Task application. It 
 
 ### Challenges and Solutions
 
-1. **DOM Event Listeners and Testing**:
-   - **Issue**: Prior to writing the unit tests, DOM elements were accessed using `document.getElementById` at the top of the file for global scope to reduce duplication. However, during testing, functions that were imported separately could not access these elements, leading to errors.
-   - **Solution**: The code was refactored to declare DOM element access within each function rather than globally. This ensured that when functions were imported for testing, they could independently access the necessary DOM elements without errors.
-
-2. **Supabase Learning Curve**:
+1. **Supabase Learning Curve**:
    - **Issue**: As a new technology, Supabase required significant learning and adaptation. Understanding its workflow and debugging issues, such as the auto-increment bug, posed initial challenges.
    - **Solution**: Extensive research and available resources were utilized to understand Supabase better. This included reading documentation, exploring online forums, and experimenting with different configurations to overcome workflow barriers.
 
-3. **Auto Increment Issues**:
+2. **Auto Increment Issues**:
    - **Issue**: A sudden 500 Internal Server Error occurred when attempting to post an expense. Supabase logs did not show any invocation, making it difficult to debug.
    - **Solution**: After several code changes and redeployments without success, the issue was suspected to be at the database level. Testing with SQL insert statements revealed a duplicate ID error, indicating a problem with Supabase's auto-increment feature. By manually inserting records until the auto-increment caught up, the issue was resolved, and normal functionality was restored.
 
-4. **Local Storage and URL Challenges**:
+3. **Local Storage and URL Challenges**:
    - **Storing User ID**:
      - **Issue**: The user ID was incorrectly stored in local storage due to a mismatch between the expected key (`userId`) and the actual key (`user_id`) returned by the backend.
      - **Solution**: Through trial and error, and extensive testing and console logging, the discrepancy was identified and corrected by ensuring the backend returned the correct key, aligning with the database column name.
