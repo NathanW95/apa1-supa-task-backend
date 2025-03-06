@@ -37,25 +37,25 @@ serve(async (req: Request) => {
       return new Response(JSON.stringify({ success: true }), { headers });
     }
 
-    // Handle PUT request - update user
+  // Handle PUT request - update password (FUTURE FRONT END IMPLEMENTATION)
     if (req.method === "PUT") {
-      const { username, password } = await req.json();
+      const { user_id, password } = await req.json();
       const { error } = await supabase
         .from("users")
-        .update({ username, password })
-        .eq("username", username);
+        .update({ password })
+        .eq("user_id", user_id);
 
       if (error) throw error;
       return new Response(JSON.stringify({ success: true }), { headers });
     }
 
-    // Handle DELETE request - delete user
+    // Handle DELETE request - delete user (FUTURE FRONT END IMPLEMENTATION)
     if (req.method === "DELETE") {
-      const { id } = await req.json();
+      const { user_id } = await req.json();
       const { error } = await supabase
         .from("users")
         .delete()
-        .eq("user_id", id);
+        .eq("user_id", user_id);
 
       if (error) throw error;
       return new Response(JSON.stringify({ success: true }), { headers });
