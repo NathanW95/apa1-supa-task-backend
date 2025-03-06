@@ -67,3 +67,5 @@ These testing strategies ensured that the application was robust and could handl
 
 ## Note
 For information on the front-end, please refer to the front-end repo's README.md file.
+
+Screenshots have been provided in the submission as evidence of manual testing.
