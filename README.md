@@ -16,7 +16,11 @@ This repository contains the backend API for the APA1 Supa Task application. It 
   - **Edit Expense**: PUT - Updates an existing expense by filtering by id and updating the other values passed in the JSON body {description, category, amount}. 
   - **Delete Expense**: DELETE - Removes an expense by ID.
  
-  - **Bonus Feature - Get All Expenses**: GET - Retrieves all expenses, accessible only to admin users (user_id: 5). 
+  - **Bonus Feature - Get All Expenses**: GET - Retrieves all expenses, accessible only to admin users (user_id: 5).
+
+ - **User Management (CURRENTLY BACKEND ONLY - for future implementation on front end)**:
+  - **Update Password**: PUT - Passes user_id of logged in user and input value for desired new password in request body and updates the password attribute in the users table.
+  - - **Delete User**: DELETE - Passes user_id of logged in user in the request body to remove the record in the users table with the matching user_id. (cascade on delete results in all associated expenses being deleted also) 
 
 ## Development Process
 
