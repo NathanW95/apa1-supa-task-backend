@@ -38,7 +38,11 @@ This repository contains the backend API for the APA1 Supa Task application. It 
    - **Request Parameter Handling**:
      - **Issue**: When updating server logic to use request parameters, an invalid URL error occurred. This was due to an incorrect assumption about the base URL for the Express.js proxy.
      - **Solution**: Research revealed the need to specify a base URL for Express.js to correctly redirect requests to Supabase. By using `localhost` and the appropriate port number, the issue was resolved, enhancing understanding of Express.js's role as a proxy service.
-     - 
+
+4. **Handling User Existence Check**:
+     - **Challenge**: Preventing duplicate user registrations efficiently.
+     - **Solution**: Implemented a GET API endpoint to check if a username already exists, returning a simple boolean or status message without exposing sensitive user data.
+
 
 ## Testing
 
@@ -63,7 +67,9 @@ This repository contains the backend API for the APA1 Supa Task application. It 
   - Submitting expenses with negative or zero amounts.
   - Handling large datasets for sorting and filtering to test performance and stability.
 
-These testing strategies ensured that the application was robust and could handle a variety of user interactions without failure. Additional automated tests can be implemented in the future to further enhance test coverage.
+These testing strategies ensured that the application was robust and could handle a variety of user interactions without failure. Additional automated tests can be implemented in the future to further enhance test coverage. 
+
+Furthermore, hashing could be implemented to passwords both at user input and in the database. This would ensure that passwords are never transmitted in plain text, adding an extra layer of security against potential interception during data transmission.
 
 ## Note
 For information on the front-end, please refer to the front-end repo's README.md file.
