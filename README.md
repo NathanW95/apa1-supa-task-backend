@@ -11,7 +11,7 @@ This repository contains the backend API for the APA1 Supa Task application. It 
 
 - **Expense Management**:
   - **Get Expenses (by User ID)**: GET - Retrieves expenses filtered by user_id (for the logged-in user).
-  - **Sort Expenses**: GET - Retreives expenses filtered by user_id (logged in user) and orders based on user-defined criteria which is passed in as request/search params (sortBy, sortOrder).
+  - **Sort Expenses**: GET - Retreives expenses filtered by user_id (logged in user) and orders based on user-defined criteria which is passed in as request/search params (sortBy, sortOrder).   -- Defaults to date_added, desc.
   - **Post Expense**: POST - Adds a new expense linked to the logged in user by taking a JSON body of {description, category, amount, user_id} to insert in to the expenses table.   -- (id, date_added are handled by DB with auto increment, now())
   - **Edit Expense**: PUT - Updates an existing expense by filtering by id and updating the other values passed in the JSON body {description, category, amount}. 
   - **Delete Expense**: DELETE - Removes an expense by ID.
