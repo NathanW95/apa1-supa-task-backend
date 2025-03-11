@@ -22,7 +22,6 @@ serve(async (req: Request) => {
         return new Response(JSON.stringify({ success: false, message: "Invalid username or password" }), { status: 401, headers });
       }
 
-
       if (data.password !== password) {
         return new Response(JSON.stringify({ success: false, message: "Invalid password" }), { status: 401, headers });
       }
