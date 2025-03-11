@@ -75,6 +75,16 @@ These testing strategies ensured that the application was robust and could handl
 
 Furthermore, hashing could be implemented to passwords both at user input and in the database. This would ensure that passwords are never transmitted in plain text, adding an extra layer of security against potential interception during data transmission.
 
+## Login credentials
+### Below are some login credentials that you can use to test the application with pre-existing 'users' if required.
+- Nathan : Pass1
+- Callum : Pass2
+- Josh : Pass3
+- Charlie : Pass4
+- Admin : Admin 
+
+Attention - logging in as Admin will display all users' expenses and disable ability to add expenses and sort expenses.
+
 ## Note
 For information on the front-end, please refer to the front-end repo's README.md file.
 
